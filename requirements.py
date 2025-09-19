@@ -25,9 +25,46 @@ class Student:
         self.student_name = student_name
         self.sub_date = sub_date
 
+
 def filter_by_date(date, submissions: list[Student]):
     sub_list = []
     for submission in submissions:
-        if submission.student_name == date:
+        if submission.sub_date == date:
             sub_list.append(submission)
         return sub_list
+
+
+# Filter By StudentId Feature (filter_by_student_id)
+# 1. Given I have a list of submission objects, when I supply a studentId and the list (in
+# that order) to the filter_by_student_id function, then submission objects with a
+# studentId equal to the studentId I supplied are returned to me, so I can see all
+# submissions for a particular student.
+# 2. Given I have supplied a studentId and a list of submission objects (in that order),
+# when the list is empty, or the filter_by_student_id feature does not find any results,
+# then I am returned an empty list.
+
+
+def filter_by_student_id(student_id, submissions: list[Student]):
+    sub_list = []
+    for submission in submissions:
+        if submission.student_id == student_id:
+            sub_list.append(submission)
+        return sub_list
+
+
+# Find Unsubmitted Feature (find_unsubmitted)
+# 1. Given I have a list of submission objects, when I supply a date, a list of student
+# names, and a list of submission objects (in that order) to the find_unsubmitted
+# function, then I am returned a list of names of students that have not completed
+# any quiz on that date.
+# 2. Given that the find unsubmitted feature does not find any student names, I am
+# returned an empty list.
+
+
+def find_unsubmitted(date, name: list[str], submissions: list[Student]):
+    sub_list = name
+    for submission in submissions:
+        if submission.name in name:
+            if submission.date == date:
+                sub_list.remove(name)
+    return sub_list
