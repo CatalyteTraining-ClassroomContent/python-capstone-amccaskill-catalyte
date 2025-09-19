@@ -68,3 +68,35 @@ def find_unsubmitted(date, name: list[str], submissions: list[Student]):
             if submission.date == date:
                 sub_list.remove(name)
     return sub_list
+
+
+# Get Quiz Average Feature (get_average_score)
+# 1. Given I have a list of submission objects, when I supply that list to the
+# get_average_score function, I am returned an average of all the quiz scores.
+# 2. Given that I have received an average of the quiz scores, it has a precision of one
+# decimal place (example: 76.6).
+
+
+def get_average_score(quiz_score: list[float]):
+    quiz_average = 0
+    for score_of_quiz in quiz_score:
+        quiz_average += score_of_quiz
+    return f"{quiz_average / len(quiz_score):.1f}"
+
+
+# Quiz Average by Module Feature (get_average_score_by_module)
+# 1. Given I have a list of submission objects, when I supply that list to the
+# get_average_score_by_module function, I am returned an object.
+# 2. Given that I have received an object from this feature, then there is one key for
+# every unique module name in the submission list, and the keys are the module
+# names.
+# 3. Given that I have a list of submission objects from only one module, when I use the
+# quiz average by module feature, then the resulting object contains only one key.
+# 4. When I have received an object from this feature, the value of each key should be
+# the average of quiz scores from that module.
+# Example:
+# {
+# "Statistics": 83.5,
+# "Algebra": 79.6,
+# "History": 80.1
+# }
