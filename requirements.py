@@ -1,18 +1,3 @@
-# "quizName": "string",
-# "quizModule": "string",
-# "quizScore": number,
-# "studentId": number,
-# "studentName": "string",
-# "submissionDate": "string"
-# Filter By Date Feature (filter_by_date)
-# 1. Given I have a list of submission objects, when I call the filterByDate function with
-# a date and the list of submissions (in that order), then a list of submission objects
-# with a submissionDate equal to that date are returned to me, so I can see all
-# submissions for a particular date.
-# 2. Given I have supplied a date and a list of submission objects (in that order), when
-# the list is empty, or the filter by date feature does not find any results, then I am
-# returned an empty list.
-
 from collections import defaultdict
 
 
@@ -20,6 +5,18 @@ class Student:
     def __init__(
         self, quiz_name, quiz_module, quiz_score, student_id, student_name, sub_date
     ):
+        """
+        Defines the class of students and expected data.
+
+        Parameters:
+        quiz_name (_str_): name of quiz.
+        quiz_score(_float_): score of graded quiz.
+        quiz_module (_str_): name of module for quiz.
+        student_id (_str_): studenty's id number.
+        student_name(str_): name of student.
+        sub_date(_float): date of submission .
+
+        """
         self.quiz_name = quiz_name
         self.quiz_module = quiz_module
         self.quiz_score = quiz_score
@@ -29,6 +26,16 @@ class Student:
 
 
 def filter_by_date(date, submissions: list[Student]):
+    """
+    Provides submissions for a particular date(s).
+
+    Parameters:
+        date (_str_): submission date for quiz.
+        submissions (list[Student]): List of student's submission infomration.
+
+    Returns:
+        sub_list (_list[str]_): a list of corresponding submission dates or empty list.
+    """
     sub_list = []
     for submission in submissions:
         if submission.sub_date == date:
@@ -36,17 +43,17 @@ def filter_by_date(date, submissions: list[Student]):
     return sub_list
 
 
-# Filter By StudentId Feature (filter_by_student_id)
-# 1. Given I have a list of submission objects, when I supply a studentId and the list (in
-# that order) to the filter_by_student_id function, then submission objects with a
-# studentId equal to the studentId I supplied are returned to me, so I can see all
-# submissions for a particular student.
-# 2. Given I have supplied a studentId and a list of submission objects (in that order),
-# when the list is empty, or the filter_by_student_id feature does not find any results,
-# then I am returned an empty list.
-
-
 def filter_by_student_id(student_id, submissions: list[Student]):
+    """
+    Provides submissions for a particular student Id(s).
+
+    Paraneters:
+        student_id (_str_): unique set of numbers that represent a student.
+        submissions (list[Student]): List of student's submission infomration.
+
+    Returns:
+        sub_list (_list[str]_): a list of corresponding submission dates or empty list.
+    """
     sub_list = []
     for submission in submissions:
         if submission.student_id == student_id:
@@ -54,16 +61,18 @@ def filter_by_student_id(student_id, submissions: list[Student]):
     return sub_list
 
 
-# Find Unsubmitted Feature (find_unsubmitted)
-# 1. Given I have a list of submission objects, when I supply a date, a list of student
-# names, and a list of submission objects (in that order) to the find_unsubmitted
-# function, then I am returned a list of names of students that have not completed
-# any quiz on that date.
-# 2. Given that the find unsubmitted feature does not find any student names, I am
-# returned an empty list.
-
-
 def find_unsubmitted(date, name: list[str], submissions: list[Student]):
+    """
+    Generates a list of names from a specified list for student(s), with unsubmitted work on a specified date.
+
+    Parameters:
+        date (_str_): _date of submissions
+        name (list[str]): _name of student
+        submissions (list[Student]): list of students submissions
+
+    Returns:
+        _list;[str_]: a list of names of students that have not completed any quiz on that date or empty list.
+    """
     sub_list = name
     for submission in submissions:
         if submission.name in name:
@@ -72,68 +81,50 @@ def find_unsubmitted(date, name: list[str], submissions: list[Student]):
     return sub_list
 
 
-# Get Quiz Average Feature (get_average_score)
-# 1. Given I have a list of submission objects, when I supply that list to the
-# get_average_score function, I am returned an average of all the quiz scores.
-# 2. Given that I have received an average of the quiz scores, it has a precision of one
-# decimal place (example: 76.6).
-
-
 def get_average_score(quiz_score: list[float]):
+    """
+    Calculates the average of the list of quiz scores.
+
+    Parameters:
+        quiz_score (list[float]): a list of quiz scores.
+
+    Returns:
+        _str_: The average of the list of quiz scores presented.
+    """
     quiz_average = 0
     for score_of_quiz in quiz_score:
         quiz_average += score_of_quiz
     return f"{quiz_average / len(quiz_score):.1f}"
 
 
-# Quiz Average by Module Feature (get_average_score_by_module)
-# 1. Given I have a list of submission objects, when I supply that list to the
-# get_average_score_by_module function, I am returned an object.
-# 2. Given that I have received an object from this feature, then there is one key for
-# every unique module name in the submission list, and the keys are the module
-# names.
-# 3. Given that I have a list of submission objects from only one module, when I use the
-# quiz average by module feature, then the resulting object contains only one key.
-# 4. When I have received an object from this feature, the value of each key should be
-# the average of quiz scores from that module.
-# Example:
-# {
-# "Statistics": 83.5,
-# "Algebra": 79.6,
-# "History": 80.1
-# }
-
-
 def get_average_score_by_module(quiz_module: list[Student]):
+    """
+    Generates a list of modules and the corresponging average of test scores.
+
+    Args:
+        quiz_module (list[Student]): a list of the quiz modules used or taken.
+
+    Returns:
+        _dict{str,float}_: a dictionary that stores the average score of each module.
+    """
     module_dict = defaultdict(list)
     for submission in quiz_module:
         module_dict[submission.quiz_module].append(submission.quiz_score)
-    
+
     average_by_module = {
-    module: float(get_average_score(scores))
-    for module, scores in module_dict.items()
-}
+        module: float(get_average_score(scores))
+        for module, scores in module_dict.items()
+    }
     return average_by_module
-    
-    
-# addresss{ key =var: val = functions}
-    
-    
-    # print(module_dict)
 
 
-#     if module_name not in module_scores:
-#     module_scores[module_name] = []
-# module_scores[module_name].append(score)
-Submission_list = [
-    Student("Quiz 1", "Math", 85.0, "S001", "Alice", "2025-09-20"),
-    Student("Quiz 1", "Math", 90.0, "S002", "Bob", "2025-09-20"),
-    Student("Quiz 1", "Math", 78.0, "S003", "Charlie", "2025-09-20"),
-    Student("Quiz 1", "Math", 92.0, "S004", "David", "2025-09-21"),
-    Student("Quiz 1", "Math", 88.0, "S005", "Eve", "2025-09-21"),
-    Student("Quiz 2", "Science", 80.0, "S001", "Alice", "2025-09-22"),
-    Student("Quiz 2", "Science", 70.0, "S002", "Bob", "2025-09-22"),
-    Student("Quiz 2", "Science", 75.0, "S003", "Charlie", "2025-09-22"),
-]
-
-get_average_score_by_module(Submission_list)
+# Submission_list = [
+#     Student("Quiz 1", "Math", 85.0, "S001", "Alice", "2025-09-20"),
+#     Student("Quiz 1", "Math", 90.0, "S002", "Bob", "2025-09-20"),
+#     Student("Quiz 1", "Math", 78.0, "S003", "Charlie", "2025-09-20"),
+#     Student("Quiz 1", "Math", 92.0, "S004", "David", "2025-09-21"),
+#     Student("Quiz 1", "Math", 88.0, "S005", "Eve", "2025-09-21"),
+#     Student("Quiz 2", "Science", 80.0, "S001", "Alice", "2025-09-22"),
+#     Student("Quiz 2", "Science", 70.0, "S002", "Bob", "2025-09-22"),
+#     Student("Quiz 2", "Science", 75.0, "S003", "Charlie", "2025-09-22"),
+# ]
