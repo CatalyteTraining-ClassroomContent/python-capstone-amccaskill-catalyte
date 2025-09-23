@@ -13,9 +13,11 @@
 # the list is empty, or the filter by date feature does not find any results, then I am
 # returned an empty list.
 
+from collections import defaultdict
+
 
 class Student:
-    def __innit__(
+    def __init__(
         self, quiz_name, quiz_module, quiz_score, student_id, student_name, sub_date
     ):
         self.quiz_name = quiz_name
@@ -31,7 +33,7 @@ def filter_by_date(date, submissions: list[Student]):
     for submission in submissions:
         if submission.sub_date == date:
             sub_list.append(submission)
-        return sub_list
+    return sub_list
 
 
 # Filter By StudentId Feature (filter_by_student_id)
@@ -49,7 +51,7 @@ def filter_by_student_id(student_id, submissions: list[Student]):
     for submission in submissions:
         if submission.student_id == student_id:
             sub_list.append(submission)
-        return sub_list
+    return sub_list
 
 
 # Find Unsubmitted Feature (find_unsubmitted)
@@ -100,3 +102,38 @@ def get_average_score(quiz_score: list[float]):
 # "Algebra": 79.6,
 # "History": 80.1
 # }
+
+
+def get_average_score_by_module(quiz_module: list[Student]):
+    module_dict = defaultdict(list)
+    for submission in quiz_module:
+        module_dict[submission.quiz_module].append(submission.quiz_score)
+    
+    average_by_module = {
+    module: float(get_average_score(scores))
+    for module, scores in module_dict.items()
+}
+    return average_by_module
+    
+    
+# addresss{ key =var: val = functions}
+    
+    
+    # print(module_dict)
+
+
+#     if module_name not in module_scores:
+#     module_scores[module_name] = []
+# module_scores[module_name].append(score)
+Submission_list = [
+    Student("Quiz 1", "Math", 85.0, "S001", "Alice", "2025-09-20"),
+    Student("Quiz 1", "Math", 90.0, "S002", "Bob", "2025-09-20"),
+    Student("Quiz 1", "Math", 78.0, "S003", "Charlie", "2025-09-20"),
+    Student("Quiz 1", "Math", 92.0, "S004", "David", "2025-09-21"),
+    Student("Quiz 1", "Math", 88.0, "S005", "Eve", "2025-09-21"),
+    Student("Quiz 2", "Science", 80.0, "S001", "Alice", "2025-09-22"),
+    Student("Quiz 2", "Science", 70.0, "S002", "Bob", "2025-09-22"),
+    Student("Quiz 2", "Science", 75.0, "S003", "Charlie", "2025-09-22"),
+]
+
+get_average_score_by_module(Submission_list)
