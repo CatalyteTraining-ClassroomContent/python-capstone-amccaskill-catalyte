@@ -24,6 +24,9 @@ class Student:
         self.student_name = student_name
         self.sub_date = sub_date
 
+    def __repr__(self):
+        return f"{self.quiz_name}, {self.quiz_module}, {self.quiz_score}, {self.student_id}, {self.student_name}, {self.sub_date}"
+
 
 def filter_by_date(date, submissions: list[Student]):
     """
