@@ -119,15 +119,3 @@ def get_average_score_by_module(quiz_module: list[Student]):
         for module, scores in module_dict.items()
     }
     return average_by_module
-
-
-# Submission_list = [
-#     Student("Quiz 1", "Math", 85.0, "S001", "Alice", "2025-09-20"),
-#     Student("Quiz 1", "Math", 90.0, "S002", "Bob", "2025-09-20"),
-#     Student("Quiz 1", "Math", 78.0, "S003", "Charlie", "2025-09-20"),
-#     Student("Quiz 1", "Math", 92.0, "S004", "David", "2025-09-21"),
-#     Student("Quiz 1", "Math", 88.0, "S005", "Eve", "2025-09-21"),
-#     Student("Quiz 2", "Science", 80.0, "S001", "Alice", "2025-09-22"),
-#     Student("Quiz 2", "Science", 70.0, "S002", "Bob", "2025-09-22"),
-#     Student("Quiz 2", "Science", 75.0, "S003", "Charlie", "2025-09-22"),
-# ]
