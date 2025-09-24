@@ -34,7 +34,7 @@ def filter_by_date(date, submissions: list[Records]):
 
     Parameters:
         date (_str_): submission date for quiz.
-        submissions (list[Student]): List of student's submission infomration.
+        submissions (list[Records]): List of student's submission infomration.
 
     Returns:
         sub_list (_list[str]_): a list of corresponding submission dates or empty list.
@@ -52,7 +52,7 @@ def filter_by_student_id(student_id, submissions: list[Records]):
 
     Paraneters:
         student_id (_str_): unique set of numbers that represent a student.
-        submissions (list[Student]): List of student's submission infomration.
+        submissions (list[Records]): List of student's submission infomration.
 
     Returns:
         sub_list (_list[str]_): a list of corresponding submission dates or empty list.
@@ -71,7 +71,7 @@ def find_unsubmitted(date, name: list[str], submissions: list[Records]):
     Parameters:
         date (_str_): _date of submissions.
         name (list[str]): _name of student.
-        submissions (list[Student]): list of students submissions.
+        submissions (list[Records]): list of students submissions.
 
     Returns:
        sub_list (_list[str_]): a list of names of students that have not completed any quiz on that date or empty list.
@@ -85,7 +85,7 @@ def find_unsubmitted(date, name: list[str], submissions: list[Records]):
     Parameters:
         date (_str_): _date of submissions
         name (list[str]): _name of student
-        submissions (list[Student]): list of students submissions
+        submissions (list[Records]): list of students submissions
 
     Returns:
         _list;[str_]: a list of names of students that have not completed any quiz on that date or empty list.
@@ -119,7 +119,7 @@ def get_average_score_by_module(quiz_module: list[Records]):
     Generates a list of modules and the corresponging average of test scores.
 
     Args:
-        quiz_module (list[Student]): a list of the quiz modules used or taken.
+        quiz_module (list[Records]): a list of the quiz modules used or taken.
 
     Returns:
         _dict{str,float}_: a dictionary that stores the average score of each module.
