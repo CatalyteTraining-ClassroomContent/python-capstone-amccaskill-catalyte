@@ -69,12 +69,12 @@ def find_unsubmitted(date, name: list[str], submissions: list[Student]):
     Generates a list of names from a specified list for student(s), with unsubmitted work on a specified date.
 
     Parameters:
-        date (_str_): _date of submissions
-        name (list[str]): _name of student
-        submissions (list[Student]): list of students submissions
+        date (_str_): _date of submissions.
+        name (list[str]): _name of student.
+        submissions (list[Student]): list of students submissions.
 
     Returns:
-        _list;[str_]: a list of names of students that have not completed any quiz on that date or empty list.
+       sub_list (_list[str_]): a list of names of students that have not completed any quiz on that date or empty list.
     """
     sub_list = name
     for submission in submissions:
