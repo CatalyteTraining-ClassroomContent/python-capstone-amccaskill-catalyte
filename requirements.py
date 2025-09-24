@@ -119,7 +119,7 @@ def get_average_score_by_module(submissions: list[Records]):
     Generates a list of modules and the corresponging average of test scores.
 
     Args:
-        quiz_module (list[Records]): a list of the quiz modules used or taken.
+        submissions (list[Records]): a list of the quiz modules used or taken.
 
     Returns:
         _dict{str,float}_: a dictionary that stores the average score of each module.
