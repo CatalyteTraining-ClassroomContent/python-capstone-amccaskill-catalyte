@@ -114,7 +114,7 @@ def get_average_score(quiz_score: list[float]):
     return f"{quiz_average / len(quiz_score):.1f}"
 
 
-def get_average_score_by_module(quiz_module: list[Records]):
+def get_average_score_by_module(submissions: list[Records]):
     """
     Generates a list of modules and the corresponging average of test scores.
 
@@ -125,7 +125,7 @@ def get_average_score_by_module(quiz_module: list[Records]):
         _dict{str,float}_: a dictionary that stores the average score of each module.
     """
     module_dict = defaultdict(list)
-    for submission in quiz_module:
+    for submission in submissions:
         module_dict[submission.quiz_module].append(submission.quiz_score)
 
     average_by_module = {
