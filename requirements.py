@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 
-class Student:
+class Records:
     def __init__(
         self, quiz_name, quiz_module, quiz_score, student_id, student_name, sub_date
     ):
@@ -28,7 +28,7 @@ class Student:
         return f"{self.quiz_name}, {self.quiz_module}, {self.quiz_score}, {self.student_id}, {self.student_name}, {self.sub_date}"
 
 
-def filter_by_date(date, submissions: list[Student]):
+def filter_by_date(date, submissions: list[Records]):
     """
     Provides submissions for a particular date(s).
 
@@ -46,7 +46,7 @@ def filter_by_date(date, submissions: list[Student]):
     return sub_list
 
 
-def filter_by_student_id(student_id, submissions: list[Student]):
+def filter_by_student_id(student_id, submissions: list[Records]):
     """
     Provides submissions for a particular student Id(s).
 
@@ -64,7 +64,7 @@ def filter_by_student_id(student_id, submissions: list[Student]):
     return sub_list
 
 
-def find_unsubmitted(date, name: list[str], submissions: list[Student]):
+def find_unsubmitted(date, name: list[str], submissions: list[Records]):
     """
     Generates a list of names from a specified list for student(s), with unsubmitted work on a specified date.
 
@@ -76,7 +76,9 @@ def find_unsubmitted(date, name: list[str], submissions: list[Student]):
     Returns:
        sub_list (_list[str_]): a list of names of students that have not completed any quiz on that date or empty list.
     """
-   def find_unsubmitted(date, name: list[str], submissions: list[Records]):
+
+
+def find_unsubmitted(date, name: list[str], submissions: list[Records]):
     """
     Generates a list of names from a specified list for student(s), with unsubmitted work on a specified date.
 
@@ -112,7 +114,7 @@ def get_average_score(quiz_score: list[float]):
     return f"{quiz_average / len(quiz_score):.1f}"
 
 
-def get_average_score_by_module(quiz_module: list[Student]):
+def get_average_score_by_module(quiz_module: list[Records]):
     """
     Generates a list of modules and the corresponging average of test scores.
 
